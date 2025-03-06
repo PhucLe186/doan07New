@@ -1,0 +1,194 @@
+.list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các sản phẩm xuống dòng */
+    gap: 7rem;
+    min-height: 100vh;
+    width: 1500px;
+}
+.item {
+    width: 320px;
+    height: 420px;
+    border-radius: 10px;
+    background-color: #cccccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+.img {
+    padding: 10px;
+    width: 100%;
+    height: 70%;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner {
+    margin: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-left {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: red; /* Màu khi hover */
+    }
+}
+.btn-right {
+    width: 25px; /* Đặt chiều rộng */
+    height: 25px; /* Đặt chiều cao bằng với chiều rộng */
+    border-radius: 50%; /* Biến button thành hình tròn */
+    background-color: #3498db; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none; /* Xóa viền */
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: red; /* Màu khi hover */
+    }
+}
+.number {
+    border-style: none;
+    background: none;
+    padding: 1rem;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+        color: red;
+    }
+}
+.click {
+    color: red;
+}
+.filter1 {
+    width: 150px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 20px;
+    position: absolute;
+    border-radius: 15px;
+    right: 40%;
+    top: 70px;
+
+    &:hover {
+        background-color: #b22222;
+    }
+}
+.filter2 {
+    width: 150px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 20px;
+    position: absolute;
+    border-radius: 15px;
+    right: 50%;
+    top: 70px;
+
+    &:hover {
+        background-color: #b22222;
+    }
+}
+.filter3 {
+    width: 150px;
+    height: 30px;
+    font-weight: 700;
+    font-size: 20px;
+    position: absolute;
+    border-radius: 15px;
+    right: 60%;
+    top: 70px;
+
+    &:hover {
+        background-color: #b22222;
+    }
+}
+.parent {
+    width: 100%;
+    height: auto;
+}
+.search {
+    border-radius: 50px;
+    width: 300px;
+    height: 50px;
+    display: block;
+    position: absolute;
+    right: 70%;
+    padding: 20px;
+    font-weight: 500;
+    font-size: 22px;
+}
+.wrapper {
+    width: 100%;
+    height: auto;
+}
+.child2 {
+    margin-top: 150px;
+    width: 100%;
+    align-items: center;
+    min-height: 100vh;
+    .text {
+        font-size: 30px;
+        justify-content: center;
+        display: flex;
+        margin-top: 300px;
+    }
+}
+.child1 {
+    gap: 5rem;
+    position: relative;
+}
+.name {
+    font-weight: 700;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    color: #800000;
+}
+.status {
+    width: 100px;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 40px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 50px;
+    overflow: hidden;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    cursor: pointer;
+    border-style: none;
+
+    align-items: center;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+    &:disabled {
+        pointer-events: none;
+        opacity: 0.6;
+        cursor: default;
+    }
+}

@@ -6,18 +6,23 @@ import routesConfig from '~/config/routes';
 import classNames from 'classnames/bind';
 import Button from '~/component/Button';
 import Onback from '~/component/BackButton';
-import { faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCartShopping, faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import Props from './props';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '~/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import Tippy from '@tippyjs/react';
+import Wrapper from '~/component/wrapper';
 
+import 'tippy.js/dist/tippy.css';
 const cx = classNames.bind(styles);
 
 function Header() {
     const { user, loading, logout } = useContext(AuthContext);
-    const navigate = useNavigate();
-    if (loading) return <p>Đang kiểm tra trạng thái đăng nhập...</p>;
+    const [visible, setVisible] = useState(false);
+
+    if (loading) {
+        return null;
+    }
 
     const NAV_BAR = [
         { title: 'trang chủ', to: routesConfig.home },
@@ -26,6 +31,7 @@ function Header() {
         { title: 'giới thiệu', to: routesConfig.introduce },
         { title: 'liên hệ', to: routesConfig.contact },
     ];
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -40,19 +46,29 @@ function Header() {
                         <FontAwesomeIcon icon={faCartShopping} />
                     </Button>
                     {user ? (
-                        <>
-                            <p>Xin chào, {user.name}!</p>
-                            <p>Email: {user.email}</p>
-                            <p>Vai trò: {user.role}</p>
-                            <button
-                                onClick={() => {
-                                    logout();
-                                    navigate('/login');
-                                }}
-                            >
-                                Đăng xuất
+                        <Tippy
+                            interactive
+                            trigger="mouseenter focus"
+                            hideOnClick={true}
+                            render={(attrs) => (
+                                <div tabIndex="-1" {...attrs}>
+                                    <Wrapper>
+                                        <Button
+                                            to={routesConfig.login}
+                                            onClick={() => {
+                                                logout();
+                                            }}
+                                        >
+                                            logout
+                                        </Button>
+                                    </Wrapper>
+                                </div>
+                            )}
+                        >
+                            <button className={cx('user-icon')}>
+                                <FontAwesomeIcon icon={faCircleUser} />
                             </button>
-                        </>
+                        </Tippy>
                     ) : (
                         <Button primary to={routesConfig.login}>
                             đăng nhập

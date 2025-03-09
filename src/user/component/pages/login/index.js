@@ -8,10 +8,10 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, database } from '~/firebase';
 import { ref, get } from 'firebase/database';
 import routesconfig from '~/config/routes';
-
+import Button from '~/component/Button';
 const cx = classNames.bind(styles);
 
-function AuthForm() {
+function Login() {
     const [isLogin, setIsLogin] = useState(true);
     const [Email, setEmail] = useState('');
     const { user } = useContext(AuthContext);
@@ -51,12 +51,9 @@ function AuthForm() {
                     <button className={cx(isLogin ? 'active' : '')} onClick={() => setIsLogin(true)}>
                         Login
                     </button>
-                    <button className={cx(!isLogin ? 'active' : '')} onClick={() => setIsLogin(false)}>
-                        Signup
-                    </button>
                 </div>
 
-                <h2>{isLogin ? 'Login' : 'Sign Up'}</h2>
+                <h2>Login</h2>
 
                 <form onSubmit={handleSubmit}>
                     <input
@@ -71,23 +68,23 @@ function AuthForm() {
                         placeholder="Password"
                         required
                     />
-                    {/* {isLogin && (
+                    {isLogin && (
                         <a href="#" className={cx('forgotPassword')}>
                             Forgot password?
                         </a>
-                    )} */}
-                    <button type="submit">{cx(isLogin ? 'Login' : 'Signup')}</button>
+                    )}
+                    <button type="submit">{cx('Login')}</button>
                 </form>
 
                 <p>
-                    {isLogin ? 'Not a member?' : 'Already have an account?'}
-                    <span onClick={() => setIsLogin(!isLogin)} className={cx('toggleText')}>
-                        {isLogin ? ' Signup now' : ' Login now'}
-                    </span>
+                    Not a member?
+                    <Button Users to={routesconfig.signup}>
+                        đăng ký
+                    </Button>
                 </p>
             </div>
         </div>
     );
 }
 
-export default AuthForm;
+export default Login;

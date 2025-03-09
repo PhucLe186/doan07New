@@ -12,9 +12,8 @@ const firebaseConfig = {
     measurementId: 'G-XFX8NFBY42',
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 const auth = getAuth(app);
-export { auth, database }; // Chỉ export đối tượng database
+export { auth, database };

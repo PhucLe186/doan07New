@@ -38,13 +38,19 @@
     color: red;
 }
 .main {
-    position: relative;
     cursor: pointer;
     background-color: transparent;
     color: black;
     position: absolute;
     right: 110px;
     display: flex;
+
+    &:hover {
+        color: red;
+    }
+}
+.Users {
+    font-size: 18px;
 
     &:hover {
         color: red;

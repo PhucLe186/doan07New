@@ -5,6 +5,7 @@ const routes = {
     introduce: '/introduce',
     contact: '/contact',
     login: '/login',
+    signup: '/signup',
     member: '/member',
     booktable: '/booktable',
     list: '/list',

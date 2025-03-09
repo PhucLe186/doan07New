@@ -13,6 +13,7 @@ function App() {
                         <Routes>
                             {publicRoutes.map((route, idx) => {
                                 let Layout = Default;
+
                                 const Page = route.component;
                                 if (route.layout === null) {
                                     Layout = Fragment;

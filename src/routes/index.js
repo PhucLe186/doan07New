@@ -2,6 +2,7 @@ import home from '~/user/component/pages/Homeee/home';
 import menu from '~/user/component/pages/menu';
 import table from '~/user/component/pages/table';
 import login from '~/user/component/pages/login';
+import Signup from '~/user/component/pages/signup/signup';
 import introduce from '~/user/component/pages/introduce';
 import contact from '~/user/component/pages/contact';
 import Booking from '~/addmin/component/page/booking/booking';
@@ -20,6 +21,7 @@ const publicRoutes = [
     { path: routesconfig.contact, component: contact },
     { path: routesconfig.cart, component: Cart },
     { path: routesconfig.login, component: login, layout: null },
+    { path: routesconfig.signup, component: Signup, layout: null },
     { path: routesconfig.list, component: List, layout: Defaultlayout },
     { path: routesconfig.member, component: member, layout: Defaultlayout },
     { path: routesconfig.booktable, component: Booktable, layout: Defaultlayout },

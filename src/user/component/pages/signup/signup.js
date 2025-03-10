@@ -15,6 +15,8 @@ function Signup() {
     const [address, setaddress] = useState('');
     const [error, setError] = useState('');
 
+    const isMatch = confirmPassword && password === confirmPassword;
+
     const Navigate = useNavigate();
 
     const handleSignUp = async (e) => {
@@ -27,50 +29,64 @@ function Signup() {
     };
 
     return (
-        <form onSubmit={handleSignUp}>
-            <input
-                type="text"
-                placeholder="họ và tên"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                autoComplete="username"
-                required
-            />
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                autoComplete="username"
-                required
-            />
-            <input
-                type="password"
-                placeholder="Mật khẩu"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                autoComplete="new-password"
-            />
-            <input
-                type="password"
-                placeholder="Nhập lại mật khẩu"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                autoComplete="new-password"
-                required
-            />
-            <input
-                type="text"
-                placeholder="Số điện thoại"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                autoComplete="new-phone"
-            />
-            <input type="text" placeholder="address" value={address} onChange={(e) => setaddress(e.target.value)} />
-            {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
-            <button type="submit">Đăng ký</button>
-        </form>
+        <div className={cx('container')}>
+            <div className={cx('formBox')}>
+                <h2>Đăng Ký</h2>
+                <form onSubmit={handleSignUp}>
+                    <input
+                        type="text"
+                        placeholder="họ và tên"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        autoComplete="username"
+                        required
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        autoComplete="username"
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Mật khẩu"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        autoComplete="new-password"
+                    />
+                    <input
+                        type="password"
+                        placeholder="Nhập lại mật khẩu"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        autoComplete="new-password"
+                        required
+                        className={cx('innput', isMatch ? 'true' : 'false')}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Số điện thoại"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        autoComplete="new-phone"
+                    />
+                    <input
+                        type="text"
+                        placeholder="address"
+                        value={address}
+                        onChange={(e) => setaddress(e.target.value)}
+                    />
+                    {error && <p className={cx('error')}>{error}</p>}
+                    <button type="submit">Đăng ký</button>
+                </form>
+                <p>
+                    Đã có tài khoản? <a>Đăng nhập</a>
+                </p>
+            </div>
+        </div>
     );
 }
 

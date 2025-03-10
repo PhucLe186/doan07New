@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail, sendEmailVerification } from 'firebase/auth';
+import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { auth, database } from '~/firebase';
 import { ref, set } from 'firebase/database';
 import routesconfig from '~/config/routes';
@@ -10,6 +10,7 @@ export const Authservice = async (name, phone, email, password, address, confirm
         setError('nhập sai mật khẩu');
         return;
     }
+
     if (password.length < 6) {
         setError('mật khẩu phải từ 6 ký tự');
         return;
@@ -24,14 +25,13 @@ export const Authservice = async (name, phone, email, password, address, confirm
     }
 
     try {
-        const checkmail = await fetchSignInMethodsForEmail(auth, email);
-        if (checkmail.length > 1) {
+        const mail = await fetchSignInMethodsForEmail(auth, email);
+        if (mail.length > 0) {
             setError('rất tiết! tài khoản email này đã tồn tại');
             return;
         }
 
         const user = await createUserWithEmailAndPassword(auth, email, password);
-        await sendEmailVerification(user.user);
         const uid = user.user.uid;
 
         await set(ref(database, `khachhang/${uid}`), {

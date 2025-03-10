@@ -29,11 +29,16 @@ function Pagination({ newsList }) {
                     {currentNews.map((news, index) => (
                         <li className={cx('item')} key={index}>
                             <img src={news.imageUrl} alt={news.courseName} className={cx('img')} />
-                            <span className={cx('name')}>{news.courseName}</span>
-                            <button className={cx('status')} disabled={news.status === 'hết'}>
-                                đặt món
-                            </button>
-                            <button className={cx('status')}> chi tiết</button>
+
+                            <span className={cx('container')}>
+                                <div className={cx('name')}>{news.courseName}</div>
+                                <div className={cx('dash')}>:</div>
+                                <div className={cx('price')}>{news.gia}.000đ</div>
+                            </span>
+
+                            <div className={cx('status')}>
+                                <button className={cx('show')}> chi tiết</button>
+                            </div>
                         </li>
                     ))}
                 </ul>

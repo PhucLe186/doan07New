@@ -4,14 +4,15 @@ import styles from './Login.module.scss';
 import classNames from 'classnames/bind';
 import { useContext } from 'react';
 import { AuthContext } from '~/AuthContext';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth, database } from '~/firebase';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { database } from '~/firebase';
 import { ref, get } from 'firebase/database';
 import routesconfig from '~/config/routes';
 import Button from '~/component/Button';
 const cx = classNames.bind(styles);
 
 function Login() {
+    const auth = getAuth();
     const [isLogin, setIsLogin] = useState(true);
     const [Email, setEmail] = useState('');
     const { user } = useContext(AuthContext);
@@ -25,10 +26,8 @@ function Login() {
         e.preventDefault();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, Email, Password);
-            // const uid = userCredential.user.uid;
-            const uid = userCredential.user.uid;
 
-            // Lấy thông tin từ Firebase Database
+            const uid = userCredential.user.uid;
             const userRef = ref(database, `khachhang/${uid}`);
             const snapshot = await get(userRef);
 
@@ -69,9 +68,12 @@ function Login() {
                         required
                     />
                     {isLogin && (
-                        <a href="#" className={cx('forgotPassword')}>
+                        <Button forgot to={routesconfig.fogot}>
                             Forgot password?
-                        </a>
+                        </Button>
+                        // <a href="#" className={cx('forgotPassword')}>
+                        //     Forgot password?
+                        // </a>
                     )}
                     <button type="submit">{cx('Login')}</button>
                 </form>

@@ -2,7 +2,7 @@ const routes = {
     home: '/',
     menu: '/menu',
     table: '/table',
-    introduce: '/introduce',
+    fogot: '/fogot',
     contact: '/contact',
     login: '/login',
     signup: '/signup',

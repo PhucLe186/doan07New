@@ -27,7 +27,6 @@ function Menuitem({ menuitem }) {
                 </button>
             </div>
             <div className={cx('child2')}>
-                <h2>Thực đơn</h2>
                 {data.length > 1 ? (
                     <Pagination newsList={data} />
                 ) : (

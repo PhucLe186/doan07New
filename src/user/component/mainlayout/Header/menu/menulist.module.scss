@@ -4,6 +4,7 @@
     color: black;
     text-decoration: none;
     display: flex;
+    align-items: center;
 
     &.active {
         color: #cc0000;
@@ -22,5 +23,6 @@
     font-weight: 700;
     font-size: 22px;
     align-items: center;
+
     gap: 5rem;
 }

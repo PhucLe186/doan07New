@@ -3,7 +3,7 @@ import menu from '~/user/component/pages/menu';
 import table from '~/user/component/pages/table';
 import login from '~/user/component/pages/login';
 import Signup from '~/user/component/pages/signup/signup';
-import introduce from '~/user/component/pages/introduce';
+import fogot from '~/user/component/pages/forgot';
 import contact from '~/user/component/pages/contact';
 import Booking from '~/addmin/component/page/booking/booking';
 import List from '~/addmin/component/page/menu';
@@ -17,7 +17,7 @@ const publicRoutes = [
     { path: routesconfig.home, component: home },
     { path: routesconfig.menu, component: menu },
     { path: routesconfig.table, component: table },
-    { path: routesconfig.introduce, component: introduce },
+    { path: routesconfig.fogot, component: fogot, layout: null },
     { path: routesconfig.contact, component: contact },
     { path: routesconfig.cart, component: Cart },
     { path: routesconfig.login, component: login, layout: null },

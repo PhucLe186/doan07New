@@ -10,14 +10,12 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Lắng nghe trạng thái đăng nhập của Firebase Auth
         const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
             if (authUser) {
-                // Nếu đã đăng nhập, lấy dữ liệu user từ Firebase Database
                 const userRef = ref(database, `khachhang/${authUser.uid}`);
                 const snapshot = await get(userRef);
                 if (snapshot.exists()) {
-                    setUser({ uid: authUser.uid, ...snapshot.val() }); // Lưu thông tin user vào state
+                    setUser({ uid: authUser.uid, ...snapshot.val() });
                 } else {
                     setUser(null);
                 }

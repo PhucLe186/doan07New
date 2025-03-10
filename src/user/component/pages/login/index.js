@@ -9,23 +9,25 @@ import { auth, database } from '~/firebase';
 import { ref, get } from 'firebase/database';
 import routesconfig from '~/config/routes';
 import Button from '~/component/Button';
+
 const cx = classNames.bind(styles);
 
 function Login() {
-    const [isLogin, setIsLogin] = useState(true);
     const [Email, setEmail] = useState('');
-    const { user } = useContext(AuthContext);
     const [Password, setPassword] = useState('');
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    // Kiểm tra nếu người dùng đã đăng nhập, điều hướng đến trang chủ
     if (user) {
         navigate(routesconfig.home);
     }
 
+    // Xử lý sự kiện đăng nhập
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, Email, Password);
-            // const uid = userCredential.user.uid;
             const uid = userCredential.user.uid;
 
             // Lấy thông tin từ Firebase Database
@@ -47,14 +49,7 @@ function Login() {
     return (
         <div className={cx('container')}>
             <div className={cx('formBox')}>
-                <div className={cx('toggle')}>
-                    <button className={cx(isLogin ? 'active' : '')} onClick={() => setIsLogin(true)}>
-                        Login
-                    </button>
-                </div>
-
                 <h2>Login</h2>
-
                 <form onSubmit={handleSubmit}>
                     <input
                         type="email"
@@ -68,18 +63,18 @@ function Login() {
                         placeholder="Password"
                         required
                     />
-                    {isLogin && (
-                        <a href="#" className={cx('forgotPassword')}>
-                            Forgot password?
-                        </a>
-                    )}
+                    {/* Liên kết "Forgot password?" */}
+                    <a href="#" className={cx('forgotPassword')}>
+                        Forgot password?
+                    </a>
                     <button type="submit">{cx('Login')}</button>
                 </form>
 
+                {/* Chuyển hướng người dùng sang trang đăng ký nếu chưa có tài khoản */}
                 <p>
-                    Not a member?
+                    Not a member?{' '}
                     <Button Users to={routesconfig.signup}>
-                        đăng ký
+                        Đăng ký
                     </Button>
                 </p>
             </div>

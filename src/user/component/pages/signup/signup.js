@@ -40,6 +40,7 @@ function Signup() {
                         onChange={(e) => setName(e.target.value)}
                         autoComplete="username"
                         required
+                        className={cx('innput1')}
                     />
                     <input
                         type="email"
@@ -48,6 +49,7 @@ function Signup() {
                         onChange={(e) => setEmail(e.target.value)}
                         autoComplete="username"
                         required
+                        className={cx('innput1')}
                     />
                     <input
                         type="password"
@@ -56,6 +58,7 @@ function Signup() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         autoComplete="new-password"
+                        className={cx('innput1')}
                     />
                     <input
                         type="password"
@@ -72,18 +75,22 @@ function Signup() {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         autoComplete="new-phone"
+                        className={cx('innput1')}
                     />
                     <input
                         type="text"
                         placeholder="address"
                         value={address}
                         onChange={(e) => setaddress(e.target.value)}
+                        className={cx('innput1')}
                     />
                     {error && <p className={cx('error')}>{error}</p>}
-                    <button type="submit">Đăng ký</button>
+                    <button className={cx('button')} type="submit">
+                        Đăng ký
+                    </button>
                 </form>
-                <p>
-                    Đã có tài khoản? <a>Đăng nhập</a>
+                <p className={cx('note')}>
+                    Đã có tài khoản? <a href="#">Đăng nhập</a>
                 </p>
             </div>
         </div>

@@ -1,37 +1,35 @@
+import axios from 'axios';
 import { createContext, useState, useEffect } from 'react';
-import { auth, database } from './firebase'; // Import Firebase
-import { ref, get } from 'firebase/database';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (authUser) => {
-            if (authUser) {
-                const userRef = ref(database, `khachhang/${authUser.uid}`);
-                const snapshot = await get(userRef);
-                if (snapshot.exists()) {
-                    setUser({ uid: authUser.uid, ...snapshot.val() });
-                } else {
-                    setUser(null);
-                }
-            } else {
-                setUser(null);
-            }
-            setLoading(false);
-        });
-
-        return () => unsubscribe();
+        axios
+            .get('http://localhost:5000/auth/check', { withCredentials: true })
+            .then((res) => setUser(res.data.user))
+            .catch(() => setUser(null));
     }, []);
 
-    // Hàm đăng xuất
-    const logout = async () => {
-        await signOut(auth);
+    const Login = async (email, password) => {
+        try {
+            const res = await axios.post(
+                'http://localhost:5000/auth/login',
+                { email, password },
+                { withCredentials: true },
+            );
+            setUser(res.data.user);
+        } catch (error) {
+            alert(error.response?.data?.message || 'Đăng nhập thất bại');
+        }
     };
 
-    return <AuthContext.Provider value={{ user, loading, logout }}>{children}</AuthContext.Provider>;
+    const logout = async () => {
+        await axios.post('http://localhost:5000/auth/logout', { withCredentials: true });
+        setUser(null);
+    };
+
+    return <AuthContext.Provider value={{ user, Login, logout }}>{children}</AuthContext.Provider>;
 };

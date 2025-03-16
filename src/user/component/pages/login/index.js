@@ -1,22 +1,22 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './Login.module.scss';
 import classNames from 'classnames/bind';
-import { useContext } from 'react';
 import { AuthContext } from '~/AuthContext';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { database } from '~/firebase';
-import { ref, get } from 'firebase/database';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
+import styles from './Login.module.scss';
 import routesconfig from '~/config/routes';
 import Button from '~/component/Button';
+
 const cx = classNames.bind(styles);
 
 function Login() {
-    const auth = getAuth();
     const [isLogin, setIsLogin] = useState(true);
-    const [Email, setEmail] = useState('');
-    const { user } = useContext(AuthContext);
-    const [Password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const { user, Login } = useContext(AuthContext);
+    const [password, setPassword] = useState('');
+    const [showpassword, setShowpassword] = useState(false);
     const navigate = useNavigate();
     if (user) {
         navigate(routesconfig.home);
@@ -24,30 +24,14 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, Email, Password);
-
-            const uid = userCredential.user.uid;
-            const userRef = ref(database, `khachhang/${uid}`);
-            const snapshot = await get(userRef);
-
-            if (snapshot.exists()) {
-                console.log('Đăng nhập thành công:', snapshot.val());
-                navigate(routesconfig.home); // Chuyển hướng về trang chủ sau khi đăng nhập
-            } else {
-                console.log('Không tìm thấy thông tin người dùng!');
-            }
-        } catch (error) {
-            console.error('Lỗi đăng nhập:', error.message);
-            console.log('Sai email hoặc mật khẩu');
-        }
+        await Login(email, password);
     };
 
     return (
         <div className={cx('container')}>
             <div className={cx('formBox')}>
                 <div className={cx('toggle')}>
-                    <button className={cx(isLogin ? 'active' : '')} onClick={() => setIsLogin(true)}>
+                    <button className={cx('button', isLogin ? 'active' : '')} onClick={() => setIsLogin(true)}>
                         Login
                     </button>
                 </div>
@@ -59,14 +43,21 @@ function Login() {
                         type="email"
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email Address"
+                        className={cx('input')}
                         required
                     />
-                    <input
-                        type="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                        required
-                    />
+                    <div className={cx('show')}>
+                        <input
+                            type={showpassword ? 'text' : 'password'}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Password"
+                            className={cx('input')}
+                            required
+                        />
+                        <div className={cx('icon-show')} onClick={() => setShowpassword(!showpassword)}>
+                            <FontAwesomeIcon icon={showpassword ? faEye : faEyeSlash} />
+                        </div>
+                    </div>
                     {isLogin && (
                         <Button forgot to={routesconfig.fogot}>
                             Forgot password?
@@ -75,7 +66,9 @@ function Login() {
                         //     Forgot password?
                         // </a>
                     )}
-                    <button type="submit">{cx('Login')}</button>
+                    <button className={cx('button')} type="submit">
+                        {cx('Login')}
+                    </button>
                 </form>
 
                 <p>

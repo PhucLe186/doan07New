@@ -15,11 +15,7 @@ import Props from '~/component/props';
 const cx = classNames.bind(styles);
 
 function Header() {
-    const { user, loading } = useContext(AuthContext);
-
-    if (loading) {
-        return null;
-    }
+    const { user } = useContext(AuthContext);
 
     const NAV_BAR = [
         { title: 'logout', to: routesConfig.login },
@@ -36,7 +32,6 @@ function Header() {
                     <MenuItem to={routesConfig.home} title="Trang chủ" />
                     <MenuItem to={routesConfig.menu} title="thực đơn" />
                     <MenuItem to={routesConfig.table} title="đặt bàn" />
-
                     <MenuItem to={routesConfig.contact} title="Liên hệ" />
                     <Button main to={routesConfig.cart}>
                         <FontAwesomeIcon icon={faCartShopping} />

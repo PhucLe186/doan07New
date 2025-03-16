@@ -11,6 +11,7 @@ import Booktable from '~/addmin/component/page/mnbook';
 import member from '~/addmin/component/page/member';
 import Cart from '~/user/component/pages/cart';
 import routesconfig from '~/config/routes';
+import reset from '~/user/component/pages/forgot/resetpw';
 import Defaultlayout from '~/addmin/component/defaulayout';
 
 const publicRoutes = [
@@ -26,5 +27,6 @@ const publicRoutes = [
     { path: routesconfig.member, component: member, layout: Defaultlayout },
     { path: routesconfig.booktable, component: Booktable, layout: Defaultlayout },
     { path: routesconfig.booking, component: Booking, layout: Defaultlayout },
+    { path: routesconfig.reset, component: reset },
 ];
 export { publicRoutes };

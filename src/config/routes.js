@@ -11,5 +11,6 @@ const routes = {
     list: '/list',
     booking: '/booking',
     cart: '/cart',
+    reset: './reset',
 };
 export default routes;

@@ -27,7 +27,7 @@ function Menuitem({ menuitem }) {
                 </button>
             </div>
             <div className={cx('child2')}>
-                {data.length > 1 ? (
+                {data.length > 0 ? (
                     <Pagination newsList={data} />
                 ) : (
                     <div className={cx('text')}> không tìm thấy món ăn</div>

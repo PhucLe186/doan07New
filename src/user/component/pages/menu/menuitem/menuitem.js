@@ -10,7 +10,7 @@ function Menuitem({ menuitem }) {
 
     const data = menuitem
         .filter((item) => category === 'all' || category === item.categoryName)
-        .filter((item) => item.courseName.toLowerCase().includes(search.toLowerCase()));
+        .filter((item) => item.TenMonAn.toLowerCase().includes(search.toLowerCase()));
     return (
         <div className={cx('wrapper')}>
             <div className={cx('child1')}>

@@ -44,10 +44,9 @@ h2 {
     font-size: 24px;
     margin-bottom: 20px;
 }
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.form {
+    display: inline-block;
+    width: 300px;
 }
 .input {
     padding: 10px;
@@ -60,6 +59,7 @@ form {
     gap: 10px;
 }
 .show {
+    margin-top: 20px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;

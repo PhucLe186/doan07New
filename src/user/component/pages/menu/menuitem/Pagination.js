@@ -28,12 +28,12 @@ function Pagination({ newsList }) {
                 <ul className={cx('list')}>
                     {currentNews.map((news, index) => (
                         <li className={cx('item')} key={index}>
-                            <img src={news.imageUrl} alt={news.courseName} className={cx('img')} />
+                            <img src={news.HinhMonAn} alt={news.courseName} className={cx('img')} />
 
                             <span className={cx('container')}>
-                                <div className={cx('name')}>{news.courseName}</div>
+                                <div className={cx('name')}>{news.TenMonAn}</div>
                                 <div className={cx('dash')}>:</div>
-                                <div className={cx('price')}>{news.gia}.000đ</div>
+                                <div className={cx('price')}>{news.ThanhTien}</div>
                             </span>
 
                             <div className={cx('status')}>

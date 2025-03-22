@@ -1,5 +1,5 @@
-function List() {
+function Staff() {
     return <p>danh sách món ăn</p>;
 }
 
-export default List;
+export default Staff;

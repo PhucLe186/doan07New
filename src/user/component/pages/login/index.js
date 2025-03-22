@@ -38,7 +38,7 @@ function Login() {
 
                 <h2>Login</h2>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className={cx('form')}>
                     <input
                         type="email"
                         onChange={(e) => setEmail(e.target.value)}

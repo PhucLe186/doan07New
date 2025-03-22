@@ -18,10 +18,10 @@ function Header() {
     const { user } = useContext(AuthContext);
 
     const NAV_BAR = [
-        { title: 'logout', to: routesConfig.login },
-        { title: 'logout', to: routesConfig.login },
-        { title: 'logout', to: routesConfig.login },
-        { title: 'logout', to: routesConfig.login },
+        { title: 'logout', to: routesConfig.home },
+        { title: 'logout', to: routesConfig.home },
+        { title: 'logout', to: routesConfig.home },
+        { title: 'logout', to: routesConfig.home },
     ];
 
     return (
@@ -31,7 +31,7 @@ function Header() {
                     <Onback />
                     <MenuItem to={routesConfig.home} title="Trang chủ" />
                     <MenuItem to={routesConfig.menu} title="thực đơn" />
-                    <MenuItem to={routesConfig.table} title="đặt bàn" />
+                    <MenuItem to={routesConfig.order} title="đặt bàn" />
                     <MenuItem to={routesConfig.contact} title="Liên hệ" />
                     <Button main to={routesConfig.cart}>
                         <FontAwesomeIcon icon={faCartShopping} />

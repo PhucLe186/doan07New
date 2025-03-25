@@ -1,41 +1,48 @@
-import { Fragment } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from '~/routes';
-import Default from '~/user/component/default';
-import { AuthProvider } from './AuthContext';
+import { Fragment } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { publicRoutes } from "~/routes";
+import Default from "~/user/component/default";
+import { AuthProvider } from "./AuthContext";
 
+// Import trang hóa đơn
+import BillList from "~/addmin/component/page/bill/BillList";
+import BillDetail from "~/addmin/component/page/bill/BillDetail";
+import BillForm from "~/addmin/component/page/bill/BillForm";
 function App() {
     return (
         <AuthProvider>
-            <div>
-                <Router>
-                    <div>
-                        <Routes>
-                            {publicRoutes.map((route, idx) => {
-                                let Layout = Default;
+            <Router>
+                <Routes>
+                    {publicRoutes.map((route, idx) => {
+                        let Layout = Default;
+                        const Page = route.component;
 
-                                const Page = route.component;
-                                if (route.layout === null) {
-                                    Layout = Fragment;
-                                } else if (route.layout) {
-                                    Layout = route.layout;
+                        if (route.layout === null) {
+                            Layout = Fragment;
+                        } else if (route.layout) {
+                            Layout = route.layout;
+                        }
+
+                        return (
+                            <Route
+                                key={idx}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
                                 }
-                                return (
-                                    <Route
-                                        key={idx}
-                                        path={route.path}
-                                        element={
-                                            <Layout>
-                                                <Page />
-                                            </Layout>
-                                        }
-                                    />
-                                );
-                            })}
-                        </Routes>
-                    </div>
-                </Router>
-            </div>
+                            />
+                        );
+                    })}
+
+                    {/* Thêm routes cho hóa đơn */}
+                    <Route path="/bills" element={<BillList />} />
+                    <Route path="/bills/:id" element={<BillDetail />} />
+                    <Route path="/bills/edit/:id" element={<BillForm />} />
+
+                </Routes>
+            </Router>
         </AuthProvider>
     );
 }

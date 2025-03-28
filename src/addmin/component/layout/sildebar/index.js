@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import Button from '~/component/Button';
 import Menu from './menu/Menu';
 import Menulist from './menu/MenuItem';
 import routesConfig from '~/config/routes';
@@ -30,7 +29,7 @@ function Sildebar() {
                 {activeMenu === 'hoadon' && (
                     <ul className={cx('submenu')}>
                         <li>
-                            <Menulist className top to={routesConfig.bill} title="quản lý hóa đơn"></Menulist>
+                            <Menulist className top to={routesConfig.billist} title="quản lý hóa đơn"></Menulist>
                         </li>
                     </ul>
                 )}

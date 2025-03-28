@@ -9,19 +9,17 @@ import Onback from '~/component/BackButton';
 import { faCartShopping, faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { AuthContext } from '~/AuthContext';
-
 import Props from '~/component/props';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
 
     const NAV_BAR = [
-        { title: 'logout', to: routesConfig.home },
-        { title: 'logout', to: routesConfig.home },
-        { title: 'logout', to: routesConfig.home },
-        { title: 'logout', to: routesConfig.home },
+        { title: 'mã giảm giá', to: routesConfig.voucher },
+        { title: 'lịch sử đặt bàn', to: routesConfig.hitry },
+        { title: 'đăng xuất', to: routesConfig.home, onclick: () => logout() },
     ];
 
     return (

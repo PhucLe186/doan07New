@@ -18,6 +18,7 @@ function Props({ children, menu, onClick }) {
                 interactive
                 placement="bottom"
                 visible={visible}
+                offset={[10, 9]}
                 onClickOutside={() => {
                     setVisible(false);
                 }}

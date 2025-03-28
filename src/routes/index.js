@@ -14,12 +14,17 @@ import reset from '~/user/component/pages/forgot/resetpw';
 import Defaultlayout from '~/addmin/component/defaulayout';
 import Order from '~/user/component/pages/table';
 import Onlyheader from '~/user/component/default/onlyheader';
-
 import Dashboard from '~/addmin/component/page/Dashboard/booking';
-import Bill from '~/addmin/component/page/bill';
+import contact from '~/user/component/pages/contact';
+import Voucher from '~/user/component/pages/voucher';
+import BillList from '~/addmin/component/page/bill/BillList';
+import BillDetail from '~/addmin/component/page/bill/BillDetail';
+import BillForm from '~/addmin/component/page/bill/BillForm';
+import BookingHistory from '~/user/component/pages/history/index';
 
 const publicRoutes = [
     { path: routesconfig.home, component: home },
+    { path: routesconfig.hitry, component: BookingHistory, layout: Onlyheader },
     { path: routesconfig.menu, component: menu },
     { path: routesconfig.order, component: Order },
     { path: routesconfig.fogot, component: fogot, layout: null },
@@ -32,7 +37,12 @@ const publicRoutes = [
     { path: routesconfig.Table, component: Table, layout: Defaultlayout },
     { path: routesconfig.admin, component: Dashboard, layout: Defaultlayout },
     { path: routesconfig.history, component: History, layout: Defaultlayout },
-    { path: routesconfig.bill, component: Bill, layout: Defaultlayout },
+    { path: routesconfig.billist, component: BillList, layout: Defaultlayout },
+    { path: routesconfig.biifrom, component: BillForm, layout: Defaultlayout },
+    { path: routesconfig.detalbil, component: BillDetail, layout: Defaultlayout },
+
     { path: routesconfig.reset, component: reset },
+    { path: routesconfig.contact, component: contact },
+    { path: routesconfig.voucher, component: Voucher, layout: Onlyheader },
 ];
 export { publicRoutes };

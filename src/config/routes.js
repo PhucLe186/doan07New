@@ -14,6 +14,11 @@ const routes = {
     reset: '/reset',
     admin: '/admin',
     history: '/history',
-    bill: '/bill',
+    contact: '/contact',
+    voucher: '/voucher',
+    billist: '/bill',
+    hitry: '/histry',
+    detalbil: '/bill/:id',
+    biifrom: '/bill/edit/:id',
 };
 export default routes;

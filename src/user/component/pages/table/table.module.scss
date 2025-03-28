@@ -31,8 +31,10 @@
 .total {
     width: 1250px;
     display: flex;
-    justify-content: end;
+    flex-direction: column;
+    align-items: end;
     .number {
+        padding: 7px;
     }
 }
 .text {
@@ -119,10 +121,15 @@
 
 .btn {
     border: none;
-    background: #ddd;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin: 0 5px;
+    background: none;
+    border-style: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    &:hover {
+        background-color: #3498db; /* Màu khi hover */
+    }
 }
 
 .delete-btn {
@@ -134,6 +141,9 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    background: none;
+    justify-content: center;
+    text-align: center;
 }
 .table-container {
     max-height: 300px; /* Chiều cao tối đa bảng */
@@ -159,6 +169,7 @@
     padding: 10px;
     text-align: left;
     border: 1px solid #ddd;
+    align-items: center;
 }
 
 .food-image {
@@ -177,60 +188,62 @@
 }
 
 .delete-btn {
-    background: red;
-    color: white;
+    background: transparent;
     border: none;
-    padding: 5px 10px;
+    outline: none;
+    padding: 5px;
     cursor: pointer;
-    align-items: center;
-    text-align: center;
+    color: red;
+    font-size: 22px;
+    display: block;
+    height: 100%;
+}
+.delete {
     display: flex;
+    text-align: center;
+
     justify-content: center;
 }
 
-:global(.react-datepicker) {
-    font-size: 20px;
-    width: 300px; /* Phóng to toàn bộ lịch */
+.select {
+    padding: 10px 15px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 350px;
+    gap: 10px;
+    align-items: center;
+    margin-right: 50px;
+    position: relative;
+    z-index: 9999;
+
+    cursor: pointer;
 }
 
-:global(.react-datepicker__month-container) {
-    width: 100%; /* Giúp lịch không bị co nhỏ */
-    height: 320px;
-    align-items: center;
+/* Khi dropdown mở rộng */
+.select:focus {
+    border-color: #007bff; /* Viền xanh khi chọn */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-:global(.react-datepicker__day) {
-    width: 28.11px;
-    height: 35px;
-    line-height: 40px;
+/* Định dạng option */
+.select option {
+    padding: 10px;
     font-size: 14px;
+    background: white;
 }
-:global(.react-datepicker__day-names) {
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    gap: 2.4rem;
-    padding-top: 20px;
-    font-weight: 700;
+
+/* Đảm bảo dropdown hiển thị đúng */
+.select::-webkit-scrollbar {
+    width: 8px;
 }
-:global(.react-datepicker__current-month) {
-    padding: 0;
-    margin: 0;
-    font-size: 15px;
-    font-weight: 700;
+
+.select::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 5px;
 }
-:global(.react-datepicker__month) {
-    text-align: center;
-    align-content: center;
-    align-items: center;
-    padding-top: 8px;
-    margin: 0;
-}
-:global(.react-datepicker__week) {
-    display: flex;
-    justify-content: space-between;
-    gap: 1.3rem;
-    align-items: center;
-    text-align: center;
+
+.select::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }

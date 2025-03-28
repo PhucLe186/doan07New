@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 import classNames from 'classnames/bind';
 import styles from './menulist.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Pagination({ newsList }) {
+function Pagination({ newsList, onClick }) {
+    const [status, setStatus] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const newsPerPage = 20; // Số tin tức mỗi trang
+    const newsPerPage = 20;
 
-    // Tính toán vị trí dữ liệu cần hiển thị
     const indexOfLastNews = currentPage * newsPerPage;
     const indexOfFirstNews = indexOfLastNews - newsPerPage;
     const currentNews = newsList.slice(indexOfFirstNews, indexOfLastNews);
 
-    // Tạo danh sách số trang
     const totalPages = Math.ceil(newsList.length / newsPerPage);
     const pageNumbers = [];
     for (let i = 1; i <= totalPages; i++) {
         pageNumbers.push(i);
     }
+    const handleadd = (news) => {
+        if (onClick) {
+            onClick(news);
+        }
+    };
     return (
         <div className={cx('parent')}>
             <div className={cx('inner')}>
@@ -30,14 +34,20 @@ function Pagination({ newsList }) {
                         <li className={cx('item')} key={index}>
                             <img src={news.HinhMonAn} alt={news.courseName} className={cx('img')} />
 
-                            <span className={cx('container')}>
+                            <div className={cx('container')}>
                                 <div className={cx('name')}>{news.TenMonAn}</div>
-                                <div className={cx('dash')}>:</div>
-                                <div className={cx('price')}>{news.ThanhTien}</div>
-                            </span>
+                                <div className={cx('price')}>{news.ThanhTien.toLocaleString()} VND</div>
+                            </div>
 
                             <div className={cx('status')}>
                                 <button className={cx('show')}> chi tiết</button>
+                                <button
+                                    className={cx('show')}
+                                    disabled={news.TrangThai === 'hết'}
+                                    onClick={() => handleadd(news)}
+                                >
+                                    {news.TrangThai === 'hết' ? 'hết' : <FontAwesomeIcon icon={faCartShopping} />}
+                                </button>
                             </div>
                         </li>
                     ))}

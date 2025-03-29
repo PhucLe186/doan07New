@@ -40,7 +40,7 @@ const publicRoutes = [
     { path: routesconfig.billist, component: BillList, layout: Defaultlayout },
     { path: routesconfig.biifrom, component: BillForm, layout: Defaultlayout },
     { path: routesconfig.detalbil, component: BillDetail, layout: Defaultlayout },
-
+    { path: routesconfig.introduce, component: Introduce },
     { path: routesconfig.reset, component: reset },
     { path: routesconfig.contact, component: contact },
     { path: routesconfig.voucher, component: Voucher, layout: Onlyheader },

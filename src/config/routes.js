@@ -20,5 +20,6 @@ const routes = {
     hitry: '/histry',
     detalbil: '/bill/:id',
     biifrom: '/bill/edit/:id',
+    introduce: '/introduce',
 };
 export default routes;

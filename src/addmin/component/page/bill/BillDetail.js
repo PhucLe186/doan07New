@@ -1,35 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import billsData from "./BillData";
+import axios from "axios"; 
 import styles from "./BillDetail.module.scss";
 
 const BillDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [bills, setBills] = useState([]);
+    const [bill, setBill] = useState(null); 
 
-    // Khi component mount, set dữ liệu
+    // 🔹 Load dữ liệu từ API hoặc database
     useEffect(() => {
-        setBills(billsData || []);
-    }, []);
+        const fetchBill = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/api/bills/${id}`);
+                setBill(response.data);
+            } catch (error) {
+                console.error("❌ Không tìm thấy hóa đơn!", error);
+                setBill(null); 
+            }
+        };
 
-    const bill = bills.find((b) => b.id === parseInt(id));
+        fetchBill();
+    }, [id]);
 
     if (!bill) {
         return <h2 className={styles.notFound}>Hóa đơn không tồn tại!</h2>;
     }
 
-   
+    
     const handleEdit = () => {
         navigate(`/bills/edit/${bill.id}`, { state: { bill } });
     };
 
     
-    const handleDelete = () => {
-        const updatedBills = bills.filter((b) => b.id !== parseInt(id));
-        setBills(updatedBills);
-        alert("Đã xóa hóa đơn!");
-        navigate("/bills"); 
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`http://localhost:5000/api/bills/${id}`);
+            alert("✅ Đã xóa hóa đơn!");
+            navigate("/bills"); 
+        } catch (error) {
+            console.error("❌ Lỗi khi xóa hóa đơn!", error);
+            alert("❌ Không thể xóa hóa đơn!");
+        }
     };
 
     return (
@@ -56,7 +68,7 @@ const BillDetail = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {bill.items.map((item, index) => (
+                    {bill.items?.map((item, index) => (
                         <tr key={index}>
                             <td>{item.name}</td>
                             <td>{item.price.toLocaleString()}</td>

@@ -8,6 +8,7 @@ import { AuthProvider } from "./AuthContext";
 import BillList from "~/addmin/component/page/bill/BillList";
 import BillDetail from "~/addmin/component/page/bill/BillDetail";
 import BillForm from "~/addmin/component/page/bill/BillForm";
+
 function App() {
     return (
         <AuthProvider>
@@ -38,6 +39,7 @@ function App() {
 
                     {/* Thêm routes cho hóa đơn */}
                     <Route path="/bills" element={<BillList />} />
+                    <Route path="/bills/add" element={<BillForm />} />  
                     <Route path="/bills/:id" element={<BillDetail />} />
                     <Route path="/bills/edit/:id" element={<BillForm />} />
 

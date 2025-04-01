@@ -61,12 +61,24 @@ function Order() {
         try {
             const infor = await axios.post('http://localhost:5000/book/book', formData, { withCredentials: true });
             if (infor.data.success) {
-                alert('đặt bàn thành công');
+                alert('Đặt bàn thành công');
+
+                // Gửi dữ liệu mới đến trang quản lý đặt bàn
+                await axios.post('http://localhost:5000/manage/add', {
+                    TenKhachHang: formData.TenKhachHang,
+                    SoDienThoai: formData.SoDienThoai,
+                    ThoiGian: formData.ThoiGian,
+                    ID_Ban: formData.ID_Ban,
+                    SoLuong: formData.SoLuong,
+                    note: formData.note,
+                    ThanhTien: formData.ThanhTien,
+                });
+
                 navigate(routesconfig.home);
                 setVoucher(null);
             }
         } catch (error) {
-            alert(error.response?.data?.message || 'lỗi lấy dữ liệu');
+            alert(error.response?.data?.message || 'Lỗi khi đặt bàn');
         }
     };
 

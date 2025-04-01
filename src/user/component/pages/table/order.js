@@ -28,6 +28,7 @@ function TableForm({ data, cartItems, onClick, getTotalPrice, voucher, booktable
         e.preventDefault();
         booktable(formData);
     };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('cart')}>
